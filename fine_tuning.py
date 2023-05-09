@@ -3,16 +3,15 @@ from torch.utils.data import DataLoader
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, get_linear_schedule_with_warmup, AdamW
 from peft import get_peft_model, LoraConfig, TaskType
 
-# Load your preprocessed training data into a dataset
-# Assume your dataset class is `YourDataset` and loads data from `your_dataset_path`
-train_dataset = YourDataset(your_dataset_path)
+# Load the preprocessed training data into a dataset
+train_dataset = Google_API(your_dataset_path)
 
 # Create a DataLoader for batching
 train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True)
 
-# Load the model and configure it for PEFT
-model_name_or_path = "bigscience/mt0-large"
-tokenizer_name_or_path = "bigscience/mt0-large"
+# Load the llama model and configure it for PEFT
+model_name_or_path = "decapoda-research/llama-7b-hf"
+tokenizer_name_or_path = "decapoda-research/llama-7b-hf"
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name_or_path)
 
 peft_config = LoraConfig(
